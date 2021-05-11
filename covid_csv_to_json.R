@@ -15,21 +15,23 @@ df <- read_excel("data/vgr_data.xlsx",
 wf <- df %>% group_by(Datum) %>%
   summarise(sjh_tot = sum(Inneliggande, na.rm = TRUE),
             iva = sum(`varav IVA`, na.rm = TRUE))
-
-ggplot(wf, aes(x = Datum))+
-  geom_line(aes(y = sjh_tot))+
-  geom_line(aes(y = iva), color = 2)
-
-write_csv(wf, "data/covid.csv")
-
-wf_js <- toJSON(wf)
+#
+# ggplot(wf, aes(x = Datum))+
+#   geom_line(aes(y = sjh_tot))+
+#   geom_line(aes(y = iva), color = 2)
+#
+# write_csv(wf, "data/covid.csv")
+#
+# wf_js <- toJSON(wf)
 
 wf_mx <- as.matrix(wf)
-toJSON(wf_mx)
-coln <- colnames(wf_mx)
-wf2 <- rbind(coln, wf_mx) %>% as_tibble()
-wf2_js <- toJSON(wf2, dataframe = "values")
-wf2_js
+
+colnames <- c("Datum", "sjh", "iva")
+
+wf_mx2 <- rbind(colnames, wf_mx)
+wf_mx2
+wfjs <- toJSON(wf_mx2)
+
 write(wf2_js, "covid_json.json")
 
 
