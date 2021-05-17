@@ -15,7 +15,8 @@ library(jsonlite)
 
 # data --------------------------------------------------------------------
 
-df <- read_excel("data/vgr_data.xlsx",
+df <- read_excel("data/vgr_data_3.xlsx",
+                 sheet = 3,
                  skip = 2)
 
 wf <- df %>% group_by(Datum) %>%
