@@ -29,10 +29,11 @@ wf_mx <- as.matrix(wf)
 colnames <- c("Datum", "sjh", "iva")
 
 wf_mx2 <- rbind(colnames, wf_mx)
-wf_mx2
 wfjs <- toJSON(wf_mx2)
 
-write(wf2_js, "covid_json.json")
+wfjs_chr <- as.character(wfjs)
+wfjs_chr <- paste("[", wfjs_chr, "]", sep = "")
+write(wfjs_chr, "covid_json.json")
 
 
 
